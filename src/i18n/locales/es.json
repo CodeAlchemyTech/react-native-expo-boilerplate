@@ -1,0 +1,116 @@
+{
+  "common": {
+    "button": {
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "confirm": "Confirmar",
+      "delete": "Eliminar",
+      "edit": "Editar",
+      "back": "Volver",
+      "next": "Siguiente",
+      "done": "Hecho",
+      "retry": "Reintentar",
+      "loading": "Cargando..."
+    },
+    "label": {
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "name": "Nombre",
+      "optional": "Opcional"
+    },
+    "error": {
+      "generic": "Algo salió mal. Por favor inténtalo de nuevo.",
+      "network": "Sin conexión a internet. Revisa tu red y vuelve a intentarlo.",
+      "notFound": "No encontrado.",
+      "unauthorized": "No tienes autorización para hacer esto."
+    },
+    "empty": {
+      "title": "Nada aquí todavía",
+      "subtitle": "Vuelve más tarde."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Bienvenido de vuelta",
+      "subtitle": "Inicia sesión en tu cuenta",
+      "button": "Iniciar Sesión",
+      "noAccount": "¿No tienes una cuenta?",
+      "signUpLink": "Regístrate",
+      "forgotPassword": "¿Olvidaste tu contraseña?"
+    },
+    "signup": {
+      "title": "Crear cuenta",
+      "subtitle": "Comienza tu viaje hoy",
+      "button": "Crear Cuenta",
+      "hasAccount": "¿Ya tienes una cuenta?",
+      "signInLink": "Inicia sesión"
+    },
+    "forgotPassword": {
+      "title": "Restablecer contraseña",
+      "subtitle": "Ingresa tu correo para recibir un enlace de restablecimiento",
+      "button": "Enviar Enlace",
+      "backToLogin": "Volver al inicio de sesión"
+    },
+    "logout": {
+      "title": "Cerrar Sesión",
+      "confirm": "¿Estás seguro de que quieres cerrar sesión?"
+    },
+    "validation": {
+      "emailRequired": "El correo es requerido",
+      "emailInvalid": "Ingresa un correo válido",
+      "passwordRequired": "La contraseña es requerida",
+      "passwordTooShort": "La contraseña debe tener al menos 8 caracteres",
+      "nameRequired": "El nombre es requerido"
+    }
+  },
+  "home": {
+    "title": "Inicio",
+    "greeting": "¡Hola, {{name}}!"
+  },
+  "settings": {
+    "title": "Configuración",
+    "theme": {
+      "label": "Apariencia",
+      "light": "Claro",
+      "dark": "Oscuro",
+      "system": "Sistema"
+    },
+    "language": {
+      "label": "Idioma"
+    },
+    "account": {
+      "label": "Cuenta",
+      "signOut": "Cerrar Sesión"
+    },
+    "premium": {
+      "label": "Premium",
+      "manage": "Gestionar Suscripción",
+      "restore": "Restaurar Compras"
+    }
+  },
+  "profile": {
+    "title": "Perfil",
+    "editProfile": "Editar Perfil"
+  },
+  "paywall": {
+    "title": "Hazte Premium",
+    "subtitle": "Desbloquea todas las funciones con una suscripción premium",
+    "button": {
+      "subscribe": "Suscribirse Ahora",
+      "restore": "Restaurar Compras",
+      "close": "Quizás Más Tarde"
+    },
+    "features": {
+      "noAds": "Sin Anuncios",
+      "noAdsDesc": "Disfruta sin publicidad",
+      "unlimitedAccess": "Acceso Ilimitado",
+      "unlimitedAccessDesc": "Accede a todo el contenido sin límites",
+      "premiumSupport": "Soporte Prioritario",
+      "premiumSupportDesc": "Obtén ayuda cuando la necesites"
+    },
+    "error": {
+      "purchaseFailed": "La compra falló. Inténtalo de nuevo.",
+      "restoreFailed": "No se encontraron compras para restaurar."
+    }
+  }
+}

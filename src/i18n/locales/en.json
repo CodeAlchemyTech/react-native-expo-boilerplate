@@ -1,0 +1,116 @@
+{
+  "common": {
+    "button": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "delete": "Delete",
+      "edit": "Edit",
+      "back": "Back",
+      "next": "Next",
+      "done": "Done",
+      "retry": "Retry",
+      "loading": "Loading..."
+    },
+    "label": {
+      "email": "Email",
+      "password": "Password",
+      "name": "Name",
+      "optional": "Optional"
+    },
+    "error": {
+      "generic": "Something went wrong. Please try again.",
+      "network": "No internet connection. Check your network and retry.",
+      "notFound": "Not found.",
+      "unauthorized": "You are not authorized to do this."
+    },
+    "empty": {
+      "title": "Nothing here yet",
+      "subtitle": "Check back later."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to your account",
+      "button": "Sign In",
+      "noAccount": "Don't have an account?",
+      "signUpLink": "Sign up",
+      "forgotPassword": "Forgot password?"
+    },
+    "signup": {
+      "title": "Create account",
+      "subtitle": "Start your journey today",
+      "button": "Create Account",
+      "hasAccount": "Already have an account?",
+      "signInLink": "Sign in"
+    },
+    "forgotPassword": {
+      "title": "Reset password",
+      "subtitle": "Enter your email to receive a reset link",
+      "button": "Send Reset Link",
+      "backToLogin": "Back to sign in"
+    },
+    "logout": {
+      "title": "Sign Out",
+      "confirm": "Are you sure you want to sign out?"
+    },
+    "validation": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Enter a valid email address",
+      "passwordRequired": "Password is required",
+      "passwordTooShort": "Password must be at least 8 characters",
+      "nameRequired": "Name is required"
+    }
+  },
+  "home": {
+    "title": "Home",
+    "greeting": "Hello, {{name}}!"
+  },
+  "settings": {
+    "title": "Settings",
+    "theme": {
+      "label": "Appearance",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "language": {
+      "label": "Language"
+    },
+    "account": {
+      "label": "Account",
+      "signOut": "Sign Out"
+    },
+    "premium": {
+      "label": "Premium",
+      "manage": "Manage Subscription",
+      "restore": "Restore Purchases"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "editProfile": "Edit Profile"
+  },
+  "paywall": {
+    "title": "Go Premium",
+    "subtitle": "Unlock all features with a premium subscription",
+    "button": {
+      "subscribe": "Subscribe Now",
+      "restore": "Restore Purchases",
+      "close": "Maybe Later"
+    },
+    "features": {
+      "noAds": "No Ads",
+      "noAdsDesc": "Enjoy an ad-free experience",
+      "unlimitedAccess": "Unlimited Access",
+      "unlimitedAccessDesc": "Access all content without limits",
+      "premiumSupport": "Priority Support",
+      "premiumSupportDesc": "Get help when you need it"
+    },
+    "error": {
+      "purchaseFailed": "Purchase failed. Please try again.",
+      "restoreFailed": "No purchases found to restore."
+    }
+  }
+}
