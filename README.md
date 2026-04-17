@@ -22,11 +22,15 @@ npx expo run:ios        # or: npx expo run:android
 ## Setup
 
 1. Copy `.env.example` to `.env.local` and fill in your API keys
-2. Update `app.json`:
-   - `name`, `slug`, `scheme`
-   - `ios.bundleIdentifier`
-   - `android.package`
+2. Rename for your project:
+   ```bash
+   npm run rename "Your App Name" "com.yourcompany.yourapp"
+   ```
 3. Configure RevenueCat and AdMob API keys in `.env.local`
+4. Generate native folders: `npx expo prebuild --clean`
+5. Install: `npm install`
+
+## Reuse Boilerplate
 
 ## Development
 

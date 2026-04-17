@@ -11,7 +11,8 @@
     "type-check": "tsc --noEmit",
     "test": "jest --watchAll",
     "prebuild": "expo prebuild --clean",
-    "prebuild:clean": "expo prebuild --clean"
+    "prebuild:clean": "expo prebuild --clean",
+    "rename": "node rename-app.js"
   },
   "dependencies": {
     "expo": "~54.0.0",

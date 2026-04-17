@@ -9,6 +9,7 @@ This file is the single source of truth for how this project works. Read it befo
 A production-ready, reusable React Native Expo boilerplate built for rapid app development across multiple verticals: AI apps, kids apps, edtech, productivity tools, networking apps, and whitelabel apps.
 
 **Stack:**
+
 - **Expo SDK ~54** with New Architecture enabled (React Native 0.81)
 - **Expo Router v6** — file-based routing with typed routes
 - **TypeScript** — strict mode, path aliases, `noUncheckedIndexedAccess`
@@ -25,12 +26,12 @@ A production-ready, reusable React Native Expo boilerplate built for rapid app d
 
 ### Expo Go vs Development Build
 
-| Feature | Expo Go | Dev Build |
-|---|---|---|
-| Hot reload, routing, UI | ✅ | ✅ |
-| RevenueCat | ❌ → mock fallback | ✅ |
-| Google AdMob | ❌ → hidden | ✅ |
-| NativeWind, Zustand, React Query | ✅ | ✅ |
+| Feature                          | Expo Go            | Dev Build |
+| -------------------------------- | ------------------ | --------- |
+| Hot reload, routing, UI          | ✅                 | ✅        |
+| RevenueCat                       | ❌ → mock fallback | ✅        |
+| Google AdMob                     | ❌ → hidden        | ✅        |
+| NativeWind, Zustand, React Query | ✅                 | ✅        |
 
 **RevenueCat and AdMob auto-detect Expo Go** via `isExpoGo` from `src/utils/expo.ts` and switch to safe fallbacks — you never need to wrap call sites with environment checks. All other features work in Expo Go.
 
@@ -54,9 +55,24 @@ npm run lint
 ```
 
 **First-time setup:**
+
 1. Copy `.env.example` to `.env.local` and fill in your API keys
 2. Replace placeholder IDs in `app.json` (bundle identifiers, AdMob app IDs)
 3. Configure RevenueCat API keys in `.env.local`
+
+### Reuse as New Project
+
+To use this boilerplate for a new project:
+
+```bash
+# Rename app (updates app.json, package.json, regenerates native folders)
+npm run rename "New App Name" "com.newapp.bundleid"
+
+# Then install fresh dependencies
+npm install
+```
+
+Example: `npm run rename "My Fitness App" "com.mycompany.fitnessapp"`
 
 ---
 
@@ -146,22 +162,24 @@ docs/
 
 ### Rule: Zustand vs React Query
 
-| Data Type | Use | Why |
-|---|---|---|
-| Auth session (user, tokens) | Zustand + persist | Client-owned, needs persistence, used everywhere |
-| Theme preference | Zustand + persist | Device-local preference, no server involved |
-| Premium entitlements | Zustand (no persist) | Verified from RevenueCat on every launch |
-| API data (lists, profiles) | React Query | Server-owned, needs caching, refetching, loading states |
-| Form state | Local `useState` | Component-scoped, ephemeral |
-| UI flags (modal open, etc.) | Local `useState` | Component-scoped, ephemeral |
+| Data Type                   | Use                  | Why                                                     |
+| --------------------------- | -------------------- | ------------------------------------------------------- |
+| Auth session (user, tokens) | Zustand + persist    | Client-owned, needs persistence, used everywhere        |
+| Theme preference            | Zustand + persist    | Device-local preference, no server involved             |
+| Premium entitlements        | Zustand (no persist) | Verified from RevenueCat on every launch                |
+| API data (lists, profiles)  | React Query          | Server-owned, needs caching, refetching, loading states |
+| Form state                  | Local `useState`     | Component-scoped, ephemeral                             |
+| UI flags (modal open, etc.) | Local `useState`     | Component-scoped, ephemeral                             |
 
 ### Zustand Rules
+
 - Access stores outside React using `useXStore.getState()` (e.g., in API interceptors)
 - Use `partialize` to exclude ephemeral state from persistence
 - `isHydrated` flag in `auth.store` prevents redirect loops during AsyncStorage load
 - Never put server data in Zustand — use React Query for that
 
 ### React Query Rules
+
 - Default `staleTime` is 5 minutes — adjust per-query as needed
 - `refetchOnWindowFocus: false` — mobile apps don't have window focus
 - `networkMode: 'offlineFirst'` — queries don't pause when offline
@@ -185,15 +203,15 @@ NativeWind v4 transforms Tailwind class strings at build time via the `jsxImport
 
 ### Design Token Naming
 
-| Token | Usage |
-|---|---|
-| `primary-{50-900}` | Brand blue — main actions, links |
+| Token                | Usage                            |
+| -------------------- | -------------------------------- |
+| `primary-{50-900}`   | Brand blue — main actions, links |
 | `secondary-{50-900}` | Brand violet — secondary actions |
-| `surface` | Card/component backgrounds |
-| `muted` | Secondary text, placeholders |
-| `danger` | Errors, destructive actions |
-| `success` | Confirmations, positive states |
-| `warning` | Cautions, attention needed |
+| `surface`            | Card/component backgrounds       |
+| `muted`              | Secondary text, placeholders     |
+| `danger`             | Errors, destructive actions      |
+| `success`            | Confirmations, positive states   |
+| `warning`            | Cautions, attention needed       |
 
 ---
 
@@ -213,7 +231,7 @@ The `(app)/_layout.tsx` guards all protected routes:
 const isHydrated = useAuthStore((s) => s.isHydrated);
 const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
 
-if (!isHydrated) return null;           // Wait for AsyncStorage
+if (!isHydrated) return null; // Wait for AsyncStorage
 if (!isAuthenticated) return <Redirect href="/(auth)/login" />;
 ```
 
@@ -222,27 +240,35 @@ The `isHydrated` flag is critical — without it, the redirect fires before Asyn
 ### Adding a New Screen
 
 **Tab screen:**
+
 ```
 src/app/(app)/(tabs)/my-feature/index.tsx
 ```
+
 Then add a `<Tabs.Screen>` in `src/app/(app)/(tabs)/_layout.tsx`.
 
 **Stack screen (inside app):**
+
 ```
 src/app/(app)/my-screen.tsx
 ```
+
 Then add a `<Stack.Screen>` in `src/app/(app)/_layout.tsx`.
 
 **Modal:**
+
 ```
 src/app/(app)/modal/my-modal.tsx
 ```
+
 Then add `<Stack.Screen name="modal/my-modal" options={{ presentation: 'modal' }}>` in `src/app/(app)/_layout.tsx`.
 
 **Auth screen:**
+
 ```
 src/app/(auth)/my-auth-screen.tsx
 ```
+
 Then add a `<Stack.Screen>` in `src/app/(auth)/_layout.tsx`.
 
 ### Typed Routes
@@ -268,6 +294,7 @@ src/features/my-feature/
 ```
 
 **Steps:**
+
 1. Create the folder and files above
 2. Define types in `types.ts`
 3. Write the React Query hook in `hooks/`
@@ -309,6 +336,7 @@ export function useMyData(id: string) {
 ### RevenueCat
 
 **Rules:**
+
 - Never import `react-native-purchases` directly in components
 - Always use `useRevenueCat()` from `@hooks/useRevenueCat`
 - The `IPurchasesService` interface in `purchases.types.ts` is the contract — the real service and mock both implement it
@@ -316,6 +344,7 @@ export function useMyData(id: string) {
 - In Expo Go, `purchasesService` automatically resolves to `mockPurchasesService` — no manual checks needed
 
 **Configure on app start** (add to `src/app/_layout.tsx`):
+
 ```tsx
 useEffect(() => {
   purchasesService.configure(
@@ -325,6 +354,7 @@ useEffect(() => {
 ```
 
 **Show the paywall:**
+
 ```tsx
 router.push('/(app)/modal/paywall'); // Create this route using PaywallScreen component
 ```
@@ -332,6 +362,7 @@ router.push('/(app)/modal/paywall'); // Create this route using PaywallScreen co
 ### Google AdMob
 
 **Rules:**
+
 - Never check `isPremium` before rendering `<BannerAd />` — it handles this internally
 - Never check `isExpoGo` before rendering `<BannerAd />` — it handles this internally
 - Never show ads inside core navigation flows — only in content areas
@@ -339,6 +370,7 @@ router.push('/(app)/modal/paywall'); // Create this route using PaywallScreen co
 - In Expo Go: `<BannerAd />` renders null, `useInterstitialAd().showAd()` is a no-op
 
 **Initialize AdMob** (in root `_layout.tsx`):
+
 ```tsx
 useEffect(() => {
   admobService.initialize();
@@ -346,9 +378,10 @@ useEffect(() => {
 ```
 
 **Use banner ad:**
+
 ```tsx
 import { BannerAd } from '@services/admob';
-<BannerAd /> // Auto-hides for premium users
+<BannerAd />; // Auto-hides for premium users
 ```
 
 ---
@@ -361,6 +394,7 @@ import { BannerAd } from '@services/admob';
 - The i18n system auto-detects device locale via `expo-localization`
 
 **Adding a new string:**
+
 ```json
 // src/i18n/locales/en.json
 {
@@ -369,12 +403,14 @@ import { BannerAd } from '@services/admob';
   }
 }
 ```
+
 ```tsx
 const { t } = useTranslation();
-<Text>{t('myFeature.title')}</Text>
+<Text>{t('myFeature.title')}</Text>;
 ```
 
 **Adding a new language:**
+
 1. Create `src/i18n/locales/fr.json`
 2. Import and add to resources in `src/i18n/index.ts`
 
@@ -390,11 +426,13 @@ const url = ENV.API_BASE_URL;
 ```
 
 **Adding a new env var:**
+
 1. Add to `.env.example` with placeholder
 2. Add `EXPO_PUBLIC_MY_VAR=value` to `.env.local`
 3. Add to `ENV` object in `src/config/env.ts`
 
 **Never:**
+
 - Access `process.env` directly in components
 - Commit `.env.local`
 - Use non-`EXPO_PUBLIC_` prefixed vars (they won't be available at runtime)
@@ -432,17 +470,17 @@ Add to `tailwind.config.js` under the relevant `theme.extend` section. Changes t
 
 ## What NOT to Modify Casually
 
-| File | Why |
-|---|---|
-| `babel.config.js` | Changing `jsxImportSource` breaks all NativeWind styling |
-| `metro.config.js` | Changing the NativeWind input path breaks CSS processing |
-| `global.css` | Import order in `index.js` is load-order sensitive |
-| `index.js` | Import order matters: CSS first, i18n second, router last |
-| `src/app/_layout.tsx` | Provider order affects the entire app render tree |
-| `src/app/(app)/_layout.tsx` | Auth guard logic — breaking this exposes protected routes |
-| `src/store/auth.store.ts` | `isHydrated` and `partialize` logic are critical for auth guard |
-| `src/services/revenuecat/purchases.types.ts` | Interface contract between real and mock service |
-| `src/utils/expo.ts` | `isExpoGo` detection used by RevenueCat and AdMob — changing this breaks conditional loading |
+| File                                         | Why                                                                                          |
+| -------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `babel.config.js`                            | Changing `jsxImportSource` breaks all NativeWind styling                                     |
+| `metro.config.js`                            | Changing the NativeWind input path breaks CSS processing                                     |
+| `global.css`                                 | Import order in `index.js` is load-order sensitive                                           |
+| `index.js`                                   | Import order matters: CSS first, i18n second, router last                                    |
+| `src/app/_layout.tsx`                        | Provider order affects the entire app render tree                                            |
+| `src/app/(app)/_layout.tsx`                  | Auth guard logic — breaking this exposes protected routes                                    |
+| `src/store/auth.store.ts`                    | `isHydrated` and `partialize` logic are critical for auth guard                              |
+| `src/services/revenuecat/purchases.types.ts` | Interface contract between real and mock service                                             |
+| `src/utils/expo.ts`                          | `isExpoGo` detection used by RevenueCat and AdMob — changing this breaks conditional loading |
 
 ---
 
@@ -472,16 +510,17 @@ export const myService = isExpoGo ? myMockService : MyRealService.getInstance();
 
 **Packages that require a dev build and their fallback strategy:**
 
-| Package | Expo Go behaviour |
-|---|---|
-| `react-native-purchases` | Mock service (empty offerings, no purchases) |
-| `react-native-google-mobile-ads` | BannerAd renders null; showAd() is a no-op |
+| Package                          | Expo Go behaviour                            |
+| -------------------------------- | -------------------------------------------- |
+| `react-native-purchases`         | Mock service (empty offerings, no purchases) |
+| `react-native-google-mobile-ads` | BannerAd renders null; showAd() is a no-op   |
 
 ---
 
 ## Build & Deployment
 
 ### Local Development Build
+
 ```bash
 npx expo prebuild --clean    # Regenerate ios/ and android/ folders
 npx expo run:ios             # Build and launch iOS simulator
@@ -489,12 +528,14 @@ npx expo run:android         # Build and launch Android emulator
 ```
 
 ### EAS Build (CI/CD)
+
 ```bash
 npx eas build --platform ios --profile preview
 npx eas build --platform android --profile preview
 ```
 
 **Before submitting:**
+
 - Update `version` in `app.json`
 - Update `ios.buildNumber` / `android.versionCode`
 - Verify all env vars are set in EAS secrets
@@ -503,6 +544,7 @@ npx eas build --platform android --profile preview
 ### Whitelabeling This Boilerplate
 
 To create a new app from this template:
+
 1. Clone the repo
 2. Update `app.json`: `name`, `slug`, `scheme`, `bundleIdentifier`, `package`
 3. Update `package.json` `name`
